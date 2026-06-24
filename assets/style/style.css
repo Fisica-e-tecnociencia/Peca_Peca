@@ -1,0 +1,217 @@
+html, body {
+    margin: 0;
+    padding: 0;
+  }
+  canvas {
+    display: block;
+  }
+
+  *{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url("../img/Capa.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+ .botao-play {
+  position: absolute;
+  bottom: 50px;
+  left: 550px; /* ADICIONE ESTA LINHA: Distância da borda esquerda */
+  display: inline-block;
+  margin-top: 20px; /* Dá um espaço entre o título e o botão */
+  padding: 15px 40px; /* Deixa o botão gordinho e fácil de clicar */
+  background-color: #ffd801; /* Um verde amigável */
+  color: white; /* Cor da letra */
+  text-decoration: none; /* Tira aquele sublinhado feio de link padrão */
+  font-size: 24px; /* Letra grande */
+  font-weight: bold;
+  border-radius: 15px; /* Deixa as bordas arredondadas (mais suave) */
+  box-shadow: 0px 5px 0px #ceb008; /* Cria um efeitinho 3D de jogo */
+  transition: 0.2s; /* Deixa a animação suave */
+}
+
+.botao-play:hover {
+  background-color: #4eb7dc;
+  transform: translateY(2px); /* Faz o botão parecer que foi apertado */
+  box-shadow: 0px 3px 0px #32748d;
+}
+
+.conteudo-capa {
+  height: 100%;
+  display: flex;
+  flex-direction: column; /* Coloca o título em cima e o botão embaixo */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Fundo azul para as telas de login/cadastro */
+.fundo-azul {
+  background-color: #0033a0; /* Um azul parecido com o do seu Canva */
+  background-image: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Container que segura os dois lados na tela de cadastro */
+.container-cadastro {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 80%;
+  max-width: 900px;
+}
+
+/* Estilos do texto da esquerda */
+.lado-esquerdo {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.titulo-bemvindo {
+  font-size: 50px;
+  font-weight: 900;
+}
+
+.titulo-bemvindo .letra-b { color: #ef1d1e; /* Vermelho */ }
+.titulo-bemvindo .letra-e { color: #7da038; /* Laranja */ }
+.titulo-bemvindo .letra-m { color: #5eb4d8; /* Amarelo */ }
+.titulo-bemvindo .espaco-bemvindo { width: 5px; display: inline-block; } /* Apenas para garantir o espaço */
+.titulo-bemvindo .letra-v { color: #ffd801; /* Verde */ }
+.titulo-bemvindo .letra-i { color: #ef1d1e; /* Azul */ }
+.titulo-bemvindo .letra-n { color: #7da038; /* Índigo */ }
+.titulo-bemvindo .letra-d { color: #5eb4d8; /* Violeta */ }
+.titulo-bemvindo .letra-o { color: #ffd801; /* Rosa */ }
+.titulo-bemvindo .letra-exclamacao { color: #ffffff; /* Vermelho */ }
+
+/* Você pode ajustar essas cores para as que você preferir! */
+
+/* Estilos do texto da direita .lado-direito*/
+
+.subtitulo {
+  color: white;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* Botão Entrar (Lado esquerdo) */
+.botao-vazado {
+  border: 3px solid white;
+  background: transparent;
+  color: #ffcc00;
+  padding: 10px 40px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  width: max-content;
+  transition: 0.3s;
+}
+
+.botao-vazado:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* O Card Branco */
+.card-branco {
+  background-color: white;
+  padding: 40px;
+  border-radius: 20px;
+  width: 350px;
+  text-align: center;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.card-branco h2 {
+  color: #4b3e9a; /* Roxo escuro */
+  font-style: italic;
+  font-family: Fantasy;
+  font-weight: 2000%;
+  margin-bottom: 30px;
+}
+
+/* Os inputs (campos de digitar) */
+.caixa-input {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.caixa-input .icone {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #888;
+}
+
+.caixa-input input {
+  width: 100%;
+  padding: 15px 15px 15px 45px; /* Espaço extra na esquerda para o ícone */
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+}
+
+/* Botão Verde */
+.botao-verde {
+  background-color: #9ccc65;
+  color: #ffcc00;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0px 5px 0px #689f38; /* Efeito 3D */
+  margin-top: 10px;
+  transition: 0.2s;
+  text-decoration: underline; /* Como no seu design */
+}
+
+.botao-verde:hover {
+  transform: translateY(2px);
+  box-shadow: 0px 3px 0px #689f38;
+
+/* Zera qualquer espaço que o navegador cria sozinho */
+/* Reset total: remove margens e barras de rolagem */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Adeus, scroll! */
+  background-color: #000;
+}
+
+.palco-avatar {
+  width: 100vw;
+  height: 100vh;
+  background-size: cover; 
+  background-repeat: no-repeat;
+  
+  /* Experimente mudar para 'center top' ou usar porcentagem */
+  background-position: center 20px; /* Isso sobe a imagem em 20 pixels */
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

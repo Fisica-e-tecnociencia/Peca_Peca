@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.3/addons/p5.sound.min.js"></script>
+    <title>Peca por Peca - Operacoes Basicas</title>
+    <link rel="stylesheet" href="operação.css">
+</head>
+<body>
+    <script src="operação.js"></script
+
+<!-- ==================== PAGINA 1: BEM-VINDO ==================== -->
+<div id="pagina-bemvindo" class="pagina ativa">
+    <div class="fundo-amarelo">
+        <h1 class="titulo-principal">OPERACOES BASICAS</h1>
+        <div class="conteudo-principal">
+            <div class="grid-operacoes">
+                <button class="card-operacao azul" onclick="selecionarOperacao('subtracao')" aria-label="Subtracao">
+                    <svg viewBox="0 0 100 100" class="icone-op">
+                        <rect x="20" y="44" width="60" height="12" rx="6" fill="white"/>
+                    </svg>
+                </button>
+                <button class="card-operacao laranja" onclick="selecionarOperacao('adicao')" aria-label="Adicao">
+                    <svg viewBox="0 0 100 100" class="icone-op">
+                        <rect x="20" y="44" width="60" height="12" rx="6" fill="white"/>
+                        <rect x="44" y="20" width="12" height="60" rx="6" fill="white"/>
+                    </svg>
+                </button>
+                <button class="card-operacao laranja" onclick="selecionarOperacao('multiplicacao')" aria-label="Multiplicacao">
+                    <svg viewBox="0 0 100 100" class="icone-op">
+                        <rect x="18" y="44" width="64" height="12" rx="6" fill="white" transform="rotate(45 50 50)"/>
+                        <rect x="18" y="44" width="64" height="12" rx="6" fill="white" transform="rotate(-45 50 50)"/>
+                    </svg>
+                </button>
+                <button class="card-operacao azul" onclick="selecionarOperacao('divisao')" aria-label="Divisao">
+                    <svg viewBox="0 0 100 100" class="icone-op">
+                        <rect x="20" y="44" width="60" height="12" rx="6" fill="white" transform="rotate(-45 50 50)"/>
+                        <circle cx="62" cy="28" r="8" fill="white"/>
+                        <circle cx="38" cy="72" r="8" fill="white"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="mascote-container">
+                <div class="balao-fala" id="balao-principal">
+                    <p>Vamos aprender?<br>Escolha uma operacao!</p>
+                </div>
+                <div class="leao-wrapper">
+                    <svg class="leao-svg" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="150" cy="160" r="120" fill="#C0392B"/>
+                        <circle cx="80" cy="100" r="40" fill="#E74C3C"/>
+                        <circle cx="150" cy="60" r="40" fill="#C0392B"/>
+                        <circle cx="220" cy="100" r="40" fill="#E74C3C"/>
+                        <circle cx="60" cy="160" r="38" fill="#E74C3C"/>
+                        <circle cx="240" cy="160" r="38" fill="#E74C3C"/>
+                        <circle cx="80" cy="220" r="35" fill="#C0392B"/>
+                        <circle cx="220" cy="220" r="35" fill="#C0392B"/>
+                        <circle cx="150" cy="250" r="30" fill="#E74C3C"/>
+                        <circle cx="100" cy="70" r="28" fill="#D35400"/>
+                        <circle cx="200" cy="70" r="28" fill="#D35400"/>
+                        <circle cx="50" cy="130" r="25" fill="#D35400"/>
+                        <circle cx="250" cy="130" r="25" fill="#D35400"/>
+                        <circle cx="55" cy="200" r="22" fill="#D35400"/>
+                        <circle cx="245" cy="200" r="22" fill="#D35400"/>
+                        <ellipse cx="150" cy="165" rx="85" ry="80" fill="#F5B041"/>
+                        <ellipse cx="75" cy="105" rx="22" ry="18" fill="#F5B041"/>
+                        <ellipse cx="75" cy="105" rx="14" ry="11" fill="#E8994E"/>
+                        <ellipse cx="225" cy="105" rx="22" ry="18" fill="#F5B041"/>
+                        <ellipse cx="225" cy="105" rx="14" ry="11" fill="#E8994E"/>
+                        <ellipse cx="120" cy="150" rx="10" ry="12" fill="#1A3668"/>
+                        <ellipse cx="180" cy="150" rx="10" ry="12" fill="#1A3668"/>
+                        <circle cx="123" cy="146" r="4" fill="white"/>
+                        <circle cx="183" cy="146" r="4" fill="white"/>
+                        <ellipse cx="150" cy="185" rx="35" ry="25" fill="#F8C471"/>
+                        <ellipse cx="150" cy="178" rx="12" ry="9" fill="#1A3668"/>
+                        <path d="M140 190 Q150 200 160 190" stroke="#1A3668" stroke-width="3" fill="none" stroke-linecap="round"/>
+                        <line x1="95" y1="178" x2="130" y2="185" stroke="#1A3668" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="95" y1="190" x2="130" y2="190" stroke="#1A3668" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="170" y1="185" x2="205" y2="178" stroke="#1A3668" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="170" y1="190" x2="205" y2="190" stroke="#1A3668" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== PAGINA 2: HIPERFOCO ==================== -->
+<div id="pagina-hiperfoco" class="pagina">
+    <div class="fundo-amarelo">
+        <div class="hiperfoco-conteudo">
+            <div class="leao-wrapper leao-pequeno bounce-anim">
+                <svg class="leao-svg" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="150" cy="160" r="120" fill="#C0392B"/>
+                    <circle cx="80" cy="100" r="40" fill="#E74C3C"/>
+                    <circle cx="150" cy="60" r="40" fill="#C0392B"/>
+                    <circle cx="220" cy="100" r="40" fill="#E74C3C"/>
+                    <circle cx="60" cy="160" r="38" fill="#E74C3C"/>
+                    <circle cx="240" cy="160" r="38" fill="#E74C3C"/>
+                    <circle cx="80" cy="220" r="35" fill="#C0392B"/>
+                    <circle cx="220" cy="220" r="35" fill="#C0392B"/>
+                    <circle cx="150" cy="250" r="30" fill="#E74C3C"/>
+                    <circle cx="100" cy="70" r="28" fill="#D35400"/>
+                    <circle cx="200" cy="70" r="28" fill="#D35400"/>
+                    <circle cx="50" cy="130" r="25" fill="#D35400"/>
+                    <circle cx="250" cy="130" r="25" fill="#D35400"/>
+                    <circle cx="55" cy="200" r="22" fill="#D35400"/>
+                    <circle cx="245" cy="200" r="22" fill="#D35400"/>
+                    <ellipse cx="150" cy="165" rx="85" ry="80" fill="#F5B041"/>
+                    <ellipse cx="75" cy="105" rx="22" ry="18" fill="#F5B041"/>
+                    <ellipse cx="75" cy="105" rx="14" ry="11" fill="#E8994E"/>
+                    <ellipse cx="225" cy="105" rx="22" ry="18" fill="#F5B041"/>
+                    <ellipse cx="225" cy="105" rx="14" ry="11" fill="#E8994E"/>
+                    <ellipse cx="120" cy="150" rx="10" ry="12" fill="#1A3668"/>
+                    <ellipse cx="180" cy="150" rx="10" ry="12" fill="#1A3668"/>
+                    <circle cx="123" cy="146" r="4" fill="white"/>
+                    <circle cx="183" cy="146" r="4" fill="white"/>
+                    <ellipse cx="150" cy="185" rx="35" ry="25" fill="#F8C471"/>
+                    <ellipse cx="150" cy="178" rx="12" ry="9" fill="#1A3668"/>
+                    <path d="M140 190 Q150 200 160 190" stroke="#1A3668" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    <line x1="95" y1="178" x2="130" y2="185" stroke="#1A3668" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="95" y1="190" x2="130" y2="190" stroke="#1A3668" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="170" y1="185" x2="205" y2="178" stroke="#1A3668" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="170" y1="190" x2="205" y2="190" stroke="#1A3668" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="balao-fala balao-hiperfoco">
+                <p>Antes de comecar, me conta:<br><strong>Qual e o seu hiperfoco?</strong></p>
+            </div>
+            <div class="hiperfoco-form">
+                <input type="text" id="input-hiperfoco" class="input-hiperfoco" placeholder="Ex: dinossauros, espaco, futebol..." maxlength="30">
+                <button class="btn-comecar" onclick="definirHiperfoco()">Vamos la!</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== PAGINA 3: JOGO ==================== -->
+<div id="pagina-jogo" class="pagina">
+    <div class="fundo-jogo" id="fundo-jogo">
+        <button class="btn-voltar" onclick="voltarParaInicio()">&#8592; Voltar</button>
+        <div class="jogo-header">
+            <h1 class="titulo-jogo" id="titulo-jogo">ADICAO</h1>
+            <div class="placar">
+                <span class="estrelas" id="estrelas">&#9733; 0</span>
+                <span class="nivel" id="nivel-display">Nivel 1</span>
+            </div>
+        </div>
+
+        <div class="jogo-corpo">
+            <!-- Personagem (muda com hiperfoco) -->
+            <div class="personagem-area">
+                <div class="personagem-wrapper" id="personagem-wrapper">
+                    <div class="personagem" id="personagem">
+                        <!-- Preenchido via JS -->
+                    </div>
+                </div>
+                <div class="balao-personagem" id="balao-personagem">
+                    <p id="fala-personagem">Vamos resolver juntos!</p>
+                </div>
+            </div>
+
+            <!-- Area do exercicio -->
+            <div class="exercicio-card" id="exercicio-card">
+                <div class="exercicio-numeros">
+                    <span class="num-grande" id="num1">0</span>
+                    <span class="op-grande" id="operador-simbolo">+</span>
+                    <span class="num-grande" id="num2">0</span>
+                    <span class="op-grande">=</span>
+                    <input type="number" class="input-resposta" id="input-resposta" placeholder="?" autocomplete="off">
+                </div>
+                <div class="exercicio-botoes">
+                    <button class="btn-jogo btn-verificar" id="btn-verificar" onclick="verificarResposta()">Verificar</button>
+                    <button class="btn-jogo btn-proximo" id="btn-proximo" onclick="proximoExercicio()" style="display:none;">Proximo &#8594;</button>
+                </div>
+                <div class="feedback-area" id="feedback-area"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Confetti canvas -->
+<canvas id="confetti-canvas"></canvas>
+
+<script src="script.js"></script>
+</body>
+</html>

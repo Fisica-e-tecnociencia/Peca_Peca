@@ -1,0 +1,468 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@600;700;800;900&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Nunito', sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* ========== SISTEMA DE PAGINAS ========== */
+.pagina {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0; left: 0;
+}
+.pagina.ativa {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.96); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+/* ========== FUNDO AMARELO (pag 1 e 2) ========== */
+.fundo-amarelo {
+    width: 100%; height: 100%;
+    background-color: #FADE6B;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ========== PAGINA 1 - PRINCIPAL ========== */
+.titulo-principal {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    color: #1A3668;
+    letter-spacing: 2px;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.conteudo-principal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(2rem, 6vw, 8rem);
+    width: 90%;
+    max-width: 1100px;
+}
+
+.grid-operacoes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(0.8rem, 2vw, 1.6rem);
+}
+
+.card-operacao {
+    width: clamp(110px, 17vw, 190px);
+    height: clamp(110px, 17vw, 190px);
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+.card-operacao:hover {
+    transform: translateY(-6px) scale(1.06);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+.card-operacao:active { transform: scale(0.94); }
+.card-operacao.azul   { background-color: #5BC0EB; }
+.card-operacao.laranja{ background-color: #E8994E; }
+.icone-op { width: 58%; height: 58%; }
+
+/* ========== MASCOTE LEAO ========== */
+.mascote-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.leao-wrapper { width: clamp(170px, 20vw, 260px); }
+.leao-pequeno { width: clamp(120px, 14vw, 180px); }
+.leao-svg { width: 100%; height: auto; }
+
+.balao-fala {
+    background: white;
+    border: 3px solid #1A3668;
+    border-radius: 18px;
+    padding: 0.9rem 1.4rem;
+    position: relative;
+    margin-bottom: 1rem;
+    max-width: 280px;
+    text-align: center;
+}
+.balao-fala::after {
+    content: '';
+    position: absolute;
+    bottom: -16px; left: 50%; transform: translateX(-50%);
+    border-left: 13px solid transparent;
+    border-right: 13px solid transparent;
+    border-top: 16px solid white;
+}
+.balao-fala::before {
+    content: '';
+    position: absolute;
+    bottom: -20px; left: 50%; transform: translateX(-50%);
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+    border-top: 20px solid #1A3668;
+}
+.balao-fala p {
+    font-size: clamp(0.95rem, 1.6vw, 1.2rem);
+    color: #1A3668;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+/* ========== PAGINA 2 - HIPERFOCO ========== */
+.hiperfoco-conteudo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.balao-hiperfoco {
+    max-width: 340px;
+}
+.hiperfoco-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+.input-hiperfoco {
+    width: 320px;
+    max-width: 85vw;
+    height: 56px;
+    border: 3px solid #1A3668;
+    border-radius: 16px;
+    background: white;
+    color: #1A3668;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-align: center;
+    outline: none;
+    transition: box-shadow 0.2s;
+}
+.input-hiperfoco:focus {
+    box-shadow: 0 0 0 4px rgba(26,54,104,0.2);
+}
+.input-hiperfoco::placeholder {
+    color: #aaa;
+    font-weight: 600;
+}
+.btn-comecar {
+    background: #1A3668;
+    color: #FADE6B;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.3rem;
+    padding: 0.7rem 2.5rem;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    letter-spacing: 1px;
+}
+.btn-comecar:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(26,54,104,0.3);
+}
+.btn-comecar:active { transform: scale(0.95); }
+
+/* ========== PAGINA 3 - JOGO ========== */
+.fundo-jogo {
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    position: relative;
+    transition: background 0.5s;
+}
+.fundo-jogo.azul-bg   { background: linear-gradient(135deg, #5BC0EB 0%, #3AA8D8 100%); }
+.fundo-jogo.laranja-bg { background: linear-gradient(135deg, #F0A04B 0%, #E8994E 100%); }
+
+.btn-voltar {
+    position: absolute;
+    top: 1.2rem; left: 1.2rem;
+    background: rgba(255,255,255,0.22);
+    border: 2px solid white;
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+    z-index: 10;
+}
+.btn-voltar:hover { background: rgba(255,255,255,0.38); }
+
+.jogo-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+}
+.titulo-jogo {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(1.8rem, 4.5vw, 3rem);
+    color: white;
+    letter-spacing: 2px;
+    text-shadow: 2px 3px 6px rgba(0,0,0,0.15);
+}
+.placar {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+.estrelas, .nivel {
+    background: rgba(255,255,255,0.25);
+    padding: 0.4rem 1rem;
+    border-radius: 10px;
+    color: white;
+    font-weight: 800;
+    font-size: 1rem;
+}
+
+.jogo-corpo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1.5rem, 4vw, 5rem);
+    flex: 1;
+    width: 100%;
+    max-width: 1000px;
+}
+
+/* ========== PERSONAGEM ========== */
+.personagem-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 200px;
+}
+.personagem-wrapper {
+    position: relative;
+}
+.personagem {
+    font-size: clamp(80px, 14vw, 150px);
+    line-height: 1;
+    transition: transform 0.3s;
+    text-align: center;
+}
+.personagem.comemorando {
+    animation: comemorar 0.6s ease 3;
+}
+.personagem.triste {
+    animation: tremer 0.4s ease 2;
+}
+@keyframes comemorar {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    25%  { transform: translateY(-20px) rotate(-10deg); }
+    50%  { transform: translateY(-30px) rotate(10deg) scale(1.1); }
+    75%  { transform: translateY(-15px) rotate(-5deg); }
+}
+@keyframes tremer {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-5px); }
+    80% { transform: translateX(5px); }
+}
+
+.balao-personagem {
+    background: white;
+    border: 3px solid rgba(255,255,255,0.8);
+    border-radius: 16px;
+    padding: 0.6rem 1.2rem;
+    max-width: 240px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.balao-personagem::after {
+    content: '';
+    position: absolute;
+    top: -14px; left: 50%; transform: translateX(-50%);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 14px solid white;
+}
+.balao-personagem p, #fala-personagem {
+    font-size: clamp(0.85rem, 1.4vw, 1.05rem);
+    color: #1A3668;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+/* ========== EXERCICIO ========== */
+.exercicio-card {
+    background: rgba(255,255,255,0.22);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    padding: 2rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    min-width: 320px;
+}
+.exercicio-numeros {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+.num-grande {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    color: white;
+    text-shadow: 1px 2px 4px rgba(0,0,0,0.15);
+}
+.op-grande {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: white;
+    text-shadow: 1px 2px 4px rgba(0,0,0,0.15);
+}
+.input-resposta {
+    width: clamp(65px, 9vw, 95px);
+    height: clamp(50px, 7vw, 68px);
+    border: 3px solid white;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.3);
+    color: white;
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    text-align: center;
+    outline: none;
+    transition: background 0.2s, border-color 0.2s;
+}
+.input-resposta::placeholder { color: rgba(255,255,255,0.5); }
+.input-resposta:focus { background: rgba(255,255,255,0.45); }
+
+.input-resposta::-webkit-outer-spin-button,
+.input-resposta::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.input-resposta[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+.input-resposta.correto {
+    border-color: #2ECC71;
+    background: rgba(46,204,113,0.35);
+}
+.input-resposta.errado {
+    border-color: #E74C3C;
+    background: rgba(231,76,60,0.25);
+}
+
+.exercicio-botoes {
+    display: flex;
+    gap: 0.8rem;
+}
+.btn-jogo {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 800;
+    padding: 0.65rem 1.8rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    letter-spacing: 0.5px;
+}
+.btn-jogo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+.btn-jogo:active { transform: scale(0.95); }
+.btn-verificar {
+    background: white;
+    color: #1A3668;
+    border: none;
+}
+.btn-proximo {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.feedback-area {
+    min-height: 1.5em;
+    font-weight: 800;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+/* ========== CONFETTI ========== */
+#confetti-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* ========== BOUNCE ANIM ========== */
+.bounce-anim {
+    animation: bounce 2s ease infinite;
+}
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+/* ========== PARTICULAS DE ACERTO ========== */
+.particula {
+    position: fixed;
+    pointer-events: none;
+    font-size: 2rem;
+    z-index: 9998;
+    animation: particulaVoar 1.2s ease-out forwards;
+}
+@keyframes particulaVoar {
+    0%   { opacity: 1; transform: translate(0, 0) scale(1) rotate(0); }
+    100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0.3) rotate(360deg); }
+}
+
+/* ========== RESPONSIVO ========== */
+@media (max-width: 768px) {
+    .conteudo-principal {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .mascote-container {
+        flex-direction: row;
+        gap: 1rem;
+    }
+    .leao-wrapper { width: 120px; }
+    .balao-fala::after, .balao-fala::before { display: none; }
+    .jogo-corpo {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .personagem-area { flex-direction: row; min-width: auto; gap: 1rem; }
+    .balao-personagem::after { display: none; }
+    .exercicio-card { padding: 1.5rem 1.8rem; min-width: 280px; }
+}
