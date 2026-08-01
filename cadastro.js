@@ -59,7 +59,7 @@ btnCadastrar.addEventListener("click", async () => {
                 confirmButtonColor: "#00a000"
               }).then(() => {
                 // Isso manda direto para a tela do avatar
-                window.location.href = "operação.html";
+                window.location.href = "operacao.html";
               });
             
             
