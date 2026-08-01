@@ -41,7 +41,7 @@ btnEntrar.addEventListener("click", async () => {
                 
                 // Se estiver usando o alert comum:
                 alert("Bem-vindo de volta!");
-                window.location.href = "operação.js"; 
+                window.location.href = "operacao.html"; 
             } else {
                 alert("E-mail incorreto!");
             }
