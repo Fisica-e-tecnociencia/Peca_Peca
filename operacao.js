@@ -1,118 +1,3 @@
-// Dados dos exercicios
-const exercicios = {
-    adicao: { num1: 0, num2: 0 },
-    subtracao: { num1: 0, num2: 0 },
-    multiplicacao: { num1: 0, num2: 0 },
-    divisao: { num1: 0, num2: 0 }
-};
-
-// Navegar entre paginas
-function irParaPagina(pagina) {
-    // Esconder todas as paginas
-    document.querySelectorAll('.pagina').forEach(p => {
-        p.classList.remove('ativa');
-    });
-
-    if (pagina === 'principal') {
-        document.getElementById('pagina-principal').classList.add('ativa');
-    } else {
-        const paginaEl = document.getElementById('pagina-' + pagina);
-        paginaEl.classList.add('ativa');
-        novoExercicio(pagina);
-    }
-}
-
-// Gerar numero aleatorio entre min e max
-function randomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-// Criar novo exercicio
-function novoExercicio(operacao) {
-    let num1, num2;
-
-    switch (operacao) {
-        case 'adicao':
-            num1 = randomInt(1, 20);
-            num2 = randomInt(1, 20);
-            break;
-        case 'subtracao':
-            num1 = randomInt(5, 25);
-            num2 = randomInt(1, num1); // Garante resultado positivo
-            break;
-        case 'multiplicacao':
-            num1 = randomInt(1, 10);
-            num2 = randomInt(1, 10);
-            break;
-        case 'divisao':
-            num2 = randomInt(1, 10);
-            num1 = num2 * randomInt(1, 10); // Garante divisao exata
-            break;
-    }
-
-    exercicios[operacao].num1 = num1;
-    exercicios[operacao].num2 = num2;
-
-    document.getElementById('num1-' + operacao).textContent = num1;
-    document.getElementById('num2-' + operacao).textContent = num2;
-    document.getElementById('resposta-' + operacao).value = '';
-    document.getElementById('feedback-' + operacao).textContent = '';
-    document.getElementById('feedback-' + operacao).className = 'feedback';
-    document.getElementById('resposta-' + operacao).focus();
-}
-
-// Verificar resposta
-function verificar(operacao) {
-    const num1 = exercicios[operacao].num1;
-    const num2 = exercicios[operacao].num2;
-    const respostaInput = document.getElementById('resposta-' + operacao);
-    const feedback = document.getElementById('feedback-' + operacao);
-    const resposta = parseInt(respostaInput.value);
-
-    if (isNaN(resposta)) {
-        feedback.textContent = 'Digite um numero!';
-        feedback.className = 'feedback errado';
-        return;
-    }
-
-    let correta;
-    switch (operacao) {
-        case 'adicao':
-            correta = num1 + num2;
-            break;
-        case 'subtracao':
-            correta = num1 - num2;
-            break;
-        case 'multiplicacao':
-            correta = num1 * num2;
-            break;
-        case 'divisao':
-            correta = num1 / num2;
-            break;
-    }
-
-    if (resposta === correta) {
-        feedback.textContent = 'Parabens! Resposta correta!';
-        feedback.className = 'feedback correto';
-    } else {
-        feedback.textContent = 'Tente novamente! A resposta correta e ' + correta;
-        feedback.className = 'feedback errado';
-    }
-}
-
-// Permitir verificar com Enter
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') {
-        const paginas = ['adicao', 'subtracao', 'multiplicacao', 'divisao'];
-        for (const op of paginas) {
-            const paginaEl = document.getElementById('pagina-' + op);
-            if (paginaEl.classList.contains('ativa')) {
-                verificar(op);
-                break;
-            }
-        }
-    }
-});
 // ==================== ESTADO DO JOGO ====================
 const estado = {
     operacaoAtual: '',
@@ -221,7 +106,7 @@ const hiperfocoMap = {
     pirata:      { emoji: '\u{1F3F4}\u200D\u2620\uFE0F', nome: 'Pirata' },
     mago:        { emoji: '\u{1F9D9}', nome: 'Mago' },
     fada:        { emoji: '\u{1F9DA}', nome: 'Fada' },
-    sereia:      { emoji: '\u{1F9DC}', nome: 'Sereia' },
+    sereia:      { emoji: '\u{1F9DC}', nome: 'Sereia' }
 };
 
 const emojiPadrao = { emoji: '\u{1F981}', nome: 'Amigo' };
@@ -236,7 +121,7 @@ const IA = {
         'Que demais! Acertou na mosca!',
         'Brilhante! Voce esta cada vez melhor!',
         'Fantastico! Mais uma pra conta!',
-        'Show! Voce e demais!',
+        'Show! Voce e demais!'
     ],
     msgAcertoComHiperfoco(hiperfoco) {
         return [
@@ -244,7 +129,7 @@ const IA = {
             `Acertou! O ${hiperfoco} ficou muito orgulhoso!`,
             `Mandou bem! O ${hiperfoco} esta comemorando!`,
             `Perfeito! O ${hiperfoco} deu um pulo de alegria!`,
-            `Brilhante! O ${hiperfoco} esta dancando!`,
+            `Brilhante! O ${hiperfoco} esta dancando!`
         ];
     },
     msgErro: [
@@ -252,19 +137,19 @@ const IA = {
         'Hmm, nao foi dessa vez. Vamos tentar mais uma vez?',
         'Errou, mas tudo bem! Tente novamente!',
         'Ops! Vamos pensar juntos? Tente de novo!',
-        'Nao desista! Voce consegue! Tente mais uma vez.',
+        'Nao desista! Voce consegue! Tente mais uma vez.'
     ],
     msgErroComHiperfoco(hiperfoco) {
         return [
             `O ${hiperfoco} esta torcendo por voce! Tente de novo!`,
             `Quase! O ${hiperfoco} sabe que voce consegue!`,
-            `Hmm, o ${hiperfoco} quer ver voce acertar! Tenta mais uma vez!`,
+            `Hmm, o ${hiperfoco} quer ver voce acertar! Tenta mais uma vez!`
         ];
     },
     msgNivel: [
         'Novo nivel! Voce esta evoluindo!',
         'Subiu de nivel! Desafio aumentado!',
-        'Level up! Voce e incrivel!',
+        'Level up! Voce e incrivel!'
     ],
     msgDica(operacao, num1, num2) {
         switch (operacao) {
@@ -303,13 +188,15 @@ const IA = {
 // ==================== NAVEGACAO ====================
 function mostrarPagina(id) {
     document.querySelectorAll('.pagina').forEach(p => p.classList.remove('ativa'));
-    document.getElementById(id).classList.add('ativa');
+    const el = document.getElementById(id);
+    if (el) el.classList.add('ativa');
 }
 
 function selecionarOperacao(op) {
     estado.operacaoAtual = op;
     mostrarPagina('pagina-hiperfoco');
-    document.getElementById('input-hiperfoco').focus();
+    const inputHiperfoco = document.getElementById('input-hiperfoco');
+    if (inputHiperfoco) inputHiperfoco.focus();
 }
 
 function voltarParaInicio() {
@@ -324,13 +211,12 @@ function voltarParaInicio() {
 
 // ==================== HIPERFOCO ====================
 function definirHiperfoco() {
-    const input = document.getElementById('input-hiperfoco').value.trim().toLowerCase();
+    const inputEl = document.getElementById('input-hiperfoco');
+    const input = inputEl ? inputEl.value.trim().toLowerCase() : '';
     estado.hiperfoco = input;
 
-    // Buscar emoji correspondente
     let match = hiperfocoMap[input];
     if (!match) {
-        // Buscar parcial
         for (const key in hiperfocoMap) {
             if (input.includes(key) || key.includes(input)) {
                 match = hiperfocoMap[key];
@@ -349,7 +235,7 @@ function definirHiperfoco() {
 // ==================== JOGO ====================
 function iniciarJogo() {
     const fundo = document.getElementById('fundo-jogo');
-    fundo.className = 'fundo-jogo';
+    if (fundo) fundo.className = 'fundo-jogo';
 
     const opLabels = {
         adicao: { titulo: 'ADICAO', fundo: 'laranja-bg', simbolo: '+' },
@@ -357,12 +243,12 @@ function iniciarJogo() {
         multiplicacao: { titulo: 'MULTIPLICACAO', fundo: 'laranja-bg', simbolo: '\u00D7' },
         divisao: { titulo: 'DIVISAO', fundo: 'azul-bg', simbolo: '\u00F7' }
     };
-    const cfg = opLabels[estado.operacaoAtual];
-    fundo.classList.add(cfg.fundo);
+    const cfg = opLabels[estado.operacaoAtual] || opLabels.adicao;
+    if (fundo) fundo.classList.add(cfg.fundo);
+    
     document.getElementById('titulo-jogo').textContent = cfg.titulo;
     document.getElementById('operador-simbolo').textContent = cfg.simbolo;
 
-    // Personagem
     document.getElementById('personagem').textContent = estado.personagemEmoji;
     document.getElementById('fala-personagem').textContent =
         `Oi! Eu sou o ${estado.hiperfoco}! Vamos resolver juntos!`;
@@ -370,6 +256,10 @@ function iniciarJogo() {
     atualizarPlacar();
     mostrarPagina('pagina-jogo');
     gerarExercicio();
+}
+
+function randInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function gerarExercicio() {
@@ -397,6 +287,10 @@ function gerarExercicio() {
             estado.respostaCorreta = randInt(1, Math.min(estado.nivel + 3, 10));
             n1 = n2 * estado.respostaCorreta;
             break;
+        default:
+            n1 = randInt(1, 10);
+            n2 = randInt(1, 10);
+            estado.respostaCorreta = n1 + n2;
     }
     estado.num1 = n1;
     estado.num2 = n2;
@@ -406,18 +300,19 @@ function gerarExercicio() {
     document.getElementById('num2').textContent = n2;
 
     const inputResp = document.getElementById('input-resposta');
-    inputResp.value = '';
-    inputResp.className = 'input-resposta';
-    inputResp.disabled = false;
-    inputResp.focus();
+    if (inputResp) {
+        inputResp.value = '';
+        inputResp.className = 'input-resposta';
+        inputResp.disabled = false;
+        inputResp.focus();
+    }
 
     document.getElementById('btn-verificar').style.display = '';
     document.getElementById('btn-proximo').style.display = 'none';
     document.getElementById('feedback-area').innerHTML = '';
 
-    // Personagem volta ao normal
     const pers = document.getElementById('personagem');
-    pers.className = 'personagem';
+    if (pers) pers.className = 'personagem';
 }
 
 function verificarResposta() {
@@ -444,7 +339,6 @@ function acertou() {
     estado.errosConsecutivos = 0;
     estado.totalAcertos++;
 
-    // Subir de nivel a cada 5 acertos consecutivos
     if (estado.acertosConsecutivos > 0 && estado.acertosConsecutivos % 5 === 0) {
         estado.nivel++;
         setTimeout(() => {
@@ -455,25 +349,20 @@ function acertou() {
 
     atualizarPlacar();
 
-    // Visual
     const inputResp = document.getElementById('input-resposta');
     inputResp.classList.add('correto');
     inputResp.disabled = true;
     document.getElementById('btn-verificar').style.display = 'none';
     document.getElementById('btn-proximo').style.display = '';
 
-    // Personagem comemora
     const pers = document.getElementById('personagem');
-    pers.classList.add('comemorando');
+    if (pers) pers.classList.add('comemorando');
 
-    // Fala
     document.getElementById('fala-personagem').textContent = IA.obterMsgAcerto();
 
-    // Feedback
     document.getElementById('feedback-area').innerHTML =
         '<span style="color:#2ECC71;font-weight:800;text-shadow:1px 1px 3px rgba(0,0,0,0.2);">&#9733; Correto!</span>';
 
-    // Confetti
     lancarConfetti();
     criarParticulasAcerto();
 }
@@ -483,7 +372,6 @@ function errou() {
     estado.acertosConsecutivos = 0;
     estado.totalErros++;
 
-    // Adaptar nivel se muitos erros
     if (estado.errosConsecutivos >= 3 && estado.nivel > 1) {
         estado.nivel--;
         estado.errosConsecutivos = 0;
@@ -491,22 +379,20 @@ function errou() {
 
     atualizarPlacar();
 
-    // Visual
     const inputResp = document.getElementById('input-resposta');
     inputResp.classList.add('errado');
     setTimeout(() => inputResp.classList.remove('errado'), 600);
     inputResp.value = '';
     inputResp.focus();
 
-    // Personagem triste
     const pers = document.getElementById('personagem');
-    pers.classList.add('triste');
-    setTimeout(() => pers.classList.remove('triste'), 800);
+    if (pers) {
+        pers.classList.add('triste');
+        setTimeout(() => pers.classList.remove('triste'), 800);
+    }
 
-    // Fala
     document.getElementById('fala-personagem').textContent = IA.obterMsgErro();
 
-    // Feedback
     document.getElementById('feedback-area').innerHTML =
         '<span style="color:#FFE066;font-weight:800;text-shadow:1px 1px 3px rgba(0,0,0,0.2);">Tente de novo!</span>';
 }
@@ -517,13 +403,16 @@ function proximoExercicio() {
 }
 
 function atualizarPlacar() {
-    document.getElementById('estrelas').innerHTML = `&#9733; ${estado.estrelas}`;
-    document.getElementById('nivel-display').textContent = `Nivel ${estado.nivel}`;
+    const elEstrelas = document.getElementById('estrelas');
+    const elNivel = document.getElementById('nivel-display');
+    if (elEstrelas) elEstrelas.innerHTML = `&#9733; ${estado.estrelas}`;
+    if (elNivel) elNivel.textContent = `Nivel ${estado.nivel}`;
 }
 
 // ==================== CONFETTI ====================
 function lancarConfetti() {
     const canvas = document.getElementById('confetti-canvas');
+    if (!canvas) return;
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -594,27 +483,21 @@ function criarParticulasAcerto() {
     }
 }
 
-// ==================== UTILITARIOS ====================
-function randInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-// Enter para verificar
+// ==================== ESCUTA DO ENTER ====================
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Enter') {
         const paginaJogo = document.getElementById('pagina-jogo');
-        if (paginaJogo.classList.contains('ativa')) {
-            const btnVerificar = document.getElementById('btn-verificar');
+        if (paginaJogo && paginaJogo.classList.contains('ativa')) {
             const btnProximo = document.getElementById('btn-proximo');
-            if (btnProximo.style.display !== 'none') {
+            if (btnProximo && btnProximo.style.display !== 'none') {
                 proximoExercicio();
             } else {
                 verificarResposta();
             }
         }
         const paginaHiperfoco = document.getElementById('pagina-hiperfoco');
-        if (paginaHiperfoco.classList.contains('ativa')) {
+        if (paginaHiperfoco && paginaHiperfoco.classList.contains('ativa')) {
             definirHiperfoco();
         }
     }
-});
+});// Dados dos exercicios
